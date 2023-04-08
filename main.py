@@ -48,7 +48,6 @@ else:
 with open(q_directory+'ch_4_questions') as f:
     f_data = f.read()
     f_data = f_data.replace('\n', ' ')
-
     ct = 1
     q_num_matches = q_num_pattern.finditer(f_data)
     for match in q_num_matches:
@@ -65,7 +64,7 @@ with open(q_directory+'ch_4_questions') as f:
     # reset counter
     ct = 1
 
-    # finds the beginning and end of question
+    # finds the beginning and end of question and then adds the string to q_list
     while ct <= num_of_qs:
         q_begins = re.compile(rf'{str(ct)}\. ')
         q_ends = re.compile(rf'{str(ct + 1)}\. ')
@@ -80,6 +79,8 @@ with open(q_directory+'ch_4_questions') as f:
 
 choice_pattern = re.compile(r'[ABCD]\. ')
 
+# reads question strings in q_list and reformats the string adding
+# a space before the choice option if there isn't one
 for enum, q in enumerate(q_list):
     choice_matches = choice_pattern.finditer(q)
     for c in choice_matches:
