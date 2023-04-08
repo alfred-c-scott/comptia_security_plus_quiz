@@ -1,6 +1,6 @@
 import re
 
-q_num_pattern = re.compile(r'[0-9]{1,3}\. ')
+q_num_pattern = re.compile(r'\d{1,3}\. ')
 
 q_directory = 'practice_tests/'
 mock_q_directory = 'mock_files/'
@@ -32,10 +32,11 @@ mock_answer_files = [
 ]
 
 q_list = []
+master_q_list = []
 q_dict = {}
 
 # set to false to use mock data files
-mock = True
+mock = False
 
 if mock:
     q_files = mock_question_files
@@ -45,47 +46,60 @@ else:
     a_files = answer_files
 
 # opens a single data file, reformats the data, and adds to q_list
-with open(q_directory+'ch_4_questions') as f:
-    f_data = f.read()
-    f_data = f_data.replace('\n', ' ')
-    ct = 1
-    q_num_matches = q_num_pattern.finditer(f_data)
-    for match in q_num_matches:
-        # changes q_num match from string to integer
-        q_num = int(match.group()[0:len(match.group()) - 2])
-        # the questions are in order in the data file and this verifies that
-        # and increments the counter to the next expected question number
-        if ct == q_num:
+for data_file in q_files:
+    with open(data_file) as f:
+        f_data = f.read()
+        f_data = f_data.replace('\n', ' ')
+        ct = 1
+        q_num_matches = q_num_pattern.finditer(f_data)
+        for match in q_num_matches:
+            # changes q_num match from string to integer
+            q_num = int(match.group()[0:len(match.group()) - 2])
+            # the questions are in order in the data file and this verifies that
+            # and increments the counter to the next expected question number
+            if ct == q_num:
+                ct += 1
+
+        # total number of questions in data file
+        num_of_qs = ct - 1
+
+        # reset counter
+        ct = 1
+
+        # finds the beginning and end of question and then adds the string to q_list
+        while ct <= num_of_qs:
+            q_begins = re.compile(rf'{str(ct)}\. ')
+            q_ends = re.compile(rf'{str(ct + 1)}\. ')
+            begins_match = q_begins.search(f_data)
+            ends_match = q_ends.search(f_data)
+            if begins_match and ends_match:
+                q_list.append(f_data[begins_match.start():ends_match.start() - 1])
+                f_data = f_data[ends_match.start():]
+            # detects the last question in the string
+            elif begins_match and not ends_match:
+                q_list.append(f_data[begins_match.start():len(f_data)])
             ct += 1
 
-    # total number of questions in data file
-    num_of_qs = ct - 1
+        choice_pattern = re.compile(r'[ABCD]\. ')
 
-    # reset counter
-    ct = 1
+        # reads question strings in q_list and reformats the string adding
+        # a space before the choice option if there isn't one
+        for enum, q in enumerate(q_list):
+            choice_matches = choice_pattern.finditer(q)
+            for c in choice_matches:
+                if q[c.start() - 1] != ' ':
+                    q = q[:c.start()] + ' ' + q[c.start():]
+                    q_list[enum] = q
+                    break
+            # print(q_list[enum])
 
-    # finds the beginning and end of question and then adds the string to q_list
-    while ct <= num_of_qs:
-        q_begins = re.compile(rf'{str(ct)}\. ')
-        q_ends = re.compile(rf'{str(ct + 1)}\. ')
-        begins_match = q_begins.search(f_data)
-        ends_match = q_ends.search(f_data)
-        if begins_match and ends_match:
-            q_list.append(f_data[begins_match.start():ends_match.start() - 1])
-        # detects the last question in the string
-        elif begins_match and not ends_match:
-            q_list.append(f_data[begins_match.start():len(f_data)])
-        ct += 1
+        # adds entire list of questions into a master list that will house
+        # a list of all the questions seperated by chapters and then
+        # re-declares q_list as an empty list
+        master_q_list.append(q_list)
+        q_list = []
 
-choice_pattern = re.compile(r'[ABCD]\. ')
-
-# reads question strings in q_list and reformats the string adding
-# a space before the choice option if there isn't one
-for enum, q in enumerate(q_list):
-    choice_matches = choice_pattern.finditer(q)
-    for c in choice_matches:
-        if q[c.start() - 1] != ' ':
-            q = q[:c.start()] + ' ' + q[c.start():]
-            q_list[enum] = q
-            break
-    print(q_list[enum])
+for enum, chapter in enumerate(master_q_list):
+    print(f'---------CHAPTER: {enum+1}')
+    for q in chapter:
+        print(q)
