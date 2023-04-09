@@ -145,4 +145,4 @@ for enum_0, chapter in enumerate(master_q_list):
 
 quiz_json = json.dumps(q_dict, indent=2)
 with open('quiz.json', 'w') as out_f:
-    json.dump(quiz_json)
+    json.dump(quiz_json, out_f)
