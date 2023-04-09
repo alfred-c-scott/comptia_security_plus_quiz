@@ -170,22 +170,22 @@ for enum_1, data_file in enumerate(answer_files):
             if ct == q_num:
                 answer = a_data[match.end():match.end()+1]
                 explanation = a_data[match.end()+3:]
-                print(enum_1+1)
                 q_dict = set_correct_answer(q_dict, q_num, str(enum_1+1), answer, explanation)
                 ct += 1
 
-print(f'There are {chapter_ct} chapters in list')
+# print(f'There are {chapter_ct} chapters in list')
 ct = 0
 while ct < chapter_ct:
-    print(f'Chapter {ct+1}')
+    # print(f'Chapter {ct+1}')
     q_lst = q_dict[str(ct+1)]
     for q in q_lst:
-        print(q['q_num'], end=' ')
+        # print(q['q_num'], end=' ')
         choice_list = q['choices']
         for c in choice_list:
             if c['is_correct']:
-                print(c['opt'])
-                print(c['explanation'])
+                # print(c['opt'])
+                # print(c['explanation'])
+                pass
     ct += 1
 
 quiz_json = json.dumps(q_dict, indent=2)
