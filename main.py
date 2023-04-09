@@ -40,14 +40,26 @@ def make_q_dict(question):
     f_dict['choices'].append({'opt': 'D', 'opt_text': q[d_end:len(question)], 'is_correct': False})
     return f_dict
 
+
+def set_correct_answer(q_d, q_n, chap, ans, exp):
+    q_lst = q_d[chap]
+    for q in q_lst:
+        if q_n == q['q_num']:
+            for ch in q['choices']:
+                if ch['opt'] == ans:
+                    ch['is_correct'] = True
+                    ch['explanation'] = exp
+    return q_d
+
 # data from practice exam book
 question_files = [
     q_directory+'ch_1_questions',
-    q_directory+'ch_2_questions',
-    q_directory+'ch_3_questions',
-    q_directory+'ch_4_questions',
-    q_directory+'ch_5_questions'
+    # q_directory+'ch_2_questions',
+    # q_directory+'ch_3_questions',
+    # q_directory+'ch_4_questions',
+    # q_directory+'ch_5_questions'
 ]
+
 answer_files = [
     q_directory+'ch_1_answer_key',
     q_directory+'ch_2_answer_key',
@@ -61,6 +73,7 @@ mock_question_files = [
     mock_q_directory+'ch_1_mock_questions',
     mock_q_directory+'ch_2_mock_questions',
 ]
+
 mock_answer_files = [
     mock_q_directory+'ch_1_mock_answer_key',
     mock_q_directory+'ch_2_mock_answer_key',
@@ -84,11 +97,11 @@ q_num_pattern = re.compile(r'\d{1,3}\. ')
 
 # opens a single data file, reformats the data, and adds to q_list
 for data_file in q_files:
-    with open(data_file) as f:
-        f_data = f.read()
-        f_data = f_data.replace('\n', ' ')
+    with open(data_file, 'r') as f:
+        q_data = f.read()
+        q_data = q_data.replace('\n', ' ')
         ct = 1
-        q_num_matches = q_num_pattern.finditer(f_data)
+        q_num_matches = q_num_pattern.finditer(q_data)
         for match in q_num_matches:
             # changes q_num match from string to integer
             q_num = int(match.group()[0:len(match.group()) - 2])
@@ -107,14 +120,14 @@ for data_file in q_files:
         while ct <= num_of_qs:
             q_begins = re.compile(rf'{str(ct)}\. ')
             q_ends = re.compile(rf'{str(ct + 1)}\. ')
-            begins_match = q_begins.search(f_data)
-            ends_match = q_ends.search(f_data)
+            begins_match = q_begins.search(q_data)
+            ends_match = q_ends.search(q_data)
             if begins_match and ends_match:
-                q_list.append(f_data[begins_match.start():ends_match.start() - 1])
-                f_data = f_data[ends_match.start():]
+                q_list.append(q_data[begins_match.start():ends_match.start() - 1])
+                q_data = q_data[ends_match.start():]
             # detects the last question in the string
             elif begins_match and not ends_match:
-                q_list.append(f_data[begins_match.start():len(f_data)])
+                q_list.append(q_data[begins_match.start():len(q_data)])
             ct += 1
 
         choice_pattern = re.compile(r'[ABCD]\. ')
@@ -139,10 +152,27 @@ for data_file in q_files:
 chapter_ct = 0
 
 for enum_0, chapter in enumerate(master_q_list):
-    q_dict[enum_0+1] = []
+    q_dict[str(enum_0+1)] = []
     for enum_1, q in enumerate(chapter):
-        q_dict[enum_0+1].append(make_q_dict(q))
+        q_dict[str(enum_0+1)].append(make_q_dict(q))
+    chapter_ct = enum_0+1
+
+with open(q_directory+'ch_1_answer_key', 'r') as f:
+    a_data = f.read()
+    a_data = a_data.replace('\n', ' ')
+    ct = 1
+    q_num_matches = q_num_pattern.finditer(a_data)
+    for match in q_num_matches:
+        q_num = int(match.group()[:len(match.group())-2])
+        if ct == q_num:
+            answer = a_data[match.end():match.end()+1]
+            explanation = a_data[match.end()+3:]
+            q_dict = set_correct_answer(q_dict, q_num, '1', answer, explanation)
+            ct += 1
+
+print(f'There are {chapter_ct} chapters in list')
 
 quiz_json = json.dumps(q_dict, indent=2)
+
 with open('quiz.json', 'w') as out_f:
     json.dump(quiz_json, out_f)
