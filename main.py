@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import re
 import json
 
@@ -54,10 +56,10 @@ def set_correct_answer(q_d, q_n, chap, ans, exp):
 # data from practice exam book
 question_files = [
     q_directory+'ch_1_questions',
-    # q_directory+'ch_2_questions',
-    # q_directory+'ch_3_questions',
-    # q_directory+'ch_4_questions',
-    # q_directory+'ch_5_questions'
+    q_directory+'ch_2_questions',
+    q_directory+'ch_3_questions',
+    q_directory+'ch_4_questions',
+    q_directory+'ch_5_questions'
 ]
 
 answer_files = [
@@ -153,24 +155,38 @@ chapter_ct = 0
 
 for enum_0, chapter in enumerate(master_q_list):
     q_dict[str(enum_0+1)] = []
-    for enum_1, q in enumerate(chapter):
+    for q in chapter:
         q_dict[str(enum_0+1)].append(make_q_dict(q))
     chapter_ct = enum_0+1
 
-with open(q_directory+'ch_1_answer_key', 'r') as f:
-    a_data = f.read()
-    a_data = a_data.replace('\n', ' ')
-    ct = 1
-    q_num_matches = q_num_pattern.finditer(a_data)
-    for match in q_num_matches:
-        q_num = int(match.group()[:len(match.group())-2])
-        if ct == q_num:
-            answer = a_data[match.end():match.end()+1]
-            explanation = a_data[match.end()+3:]
-            q_dict = set_correct_answer(q_dict, q_num, '1', answer, explanation)
-            ct += 1
+for enum_1, data_file in enumerate(answer_files):
+    with open(data_file, 'r') as f:
+        a_data = f.read()
+        a_data = a_data.replace('\n', ' ')
+        ct = 1
+        q_num_matches = q_num_pattern.finditer(a_data)
+        for match in q_num_matches:
+            q_num = int(match.group()[:len(match.group())-2])
+            if ct == q_num:
+                answer = a_data[match.end():match.end()+1]
+                explanation = a_data[match.end()+3:]
+                print(enum_1+1)
+                q_dict = set_correct_answer(q_dict, q_num, str(enum_1+1), answer, explanation)
+                ct += 1
 
 print(f'There are {chapter_ct} chapters in list')
+ct = 0
+while ct < chapter_ct:
+    print(f'Chapter {ct+1}')
+    q_lst = q_dict[str(ct+1)]
+    for q in q_lst:
+        print(q['q_num'], end=' ')
+        choice_list = q['choices']
+        for c in choice_list:
+            if c['is_correct']:
+                print(c['opt'])
+                print(c['explanation'])
+    ct += 1
 
 quiz_json = json.dumps(q_dict, indent=2)
 
