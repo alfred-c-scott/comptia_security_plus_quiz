@@ -1,9 +1,44 @@
 import re
-
-q_num_pattern = re.compile(r'\d{1,3}\. ')
+import json
 
 q_directory = 'practice_tests/'
 mock_q_directory = 'mock_files/'
+
+def make_q_dict(question):
+    f_c_pattern = re.compile(r' [ABCD]\. ')
+    c_match = f_c_pattern.finditer(question)
+    q_match = q_num_pattern.search(question)
+    f_dict = {}
+    f_dict['q_num'] = int(q_match.group()[q_match.start():q_match.end() - 2])
+    a_start = None
+    a_end = None
+    b_start = None
+    b_end = None
+    c_start = None
+    c_end = None
+    d_start = None
+    d_end = None
+    for c in c_match:
+        if c.group() == ' A. ':
+            a_start = c.start()
+            a_end = c.end()
+        if c.group() == ' B. ':
+            b_start = c.start()
+            b_end = c.end()
+        if c.group() == ' C. ':
+            c_start = c.start()
+            c_end = c.end()
+        if c.group() == ' D. ':
+            d_start = c.start()
+            d_end = c.end()
+            pass
+    f_dict['q_txt'] = q[q_match.end():a_start]
+    f_dict['choices'] = []
+    f_dict['choices'].append({'opt': 'A', 'opt_text': q[a_end:b_start], 'is_correct': False})
+    f_dict['choices'].append({'opt': 'B', 'opt_text': q[b_end:c_start], 'is_correct': False})
+    f_dict['choices'].append({'opt': 'C', 'opt_text': q[c_end:d_start], 'is_correct': False})
+    f_dict['choices'].append({'opt': 'D', 'opt_text': q[d_end:len(question)], 'is_correct': False})
+    return f_dict
 
 # data from practice exam book
 question_files = [
@@ -44,6 +79,8 @@ if mock:
 else:
     q_files = question_files
     a_files = answer_files
+
+q_num_pattern = re.compile(r'\d{1,3}\. ')
 
 # opens a single data file, reformats the data, and adds to q_list
 for data_file in q_files:
@@ -99,7 +136,13 @@ for data_file in q_files:
         master_q_list.append(q_list)
         q_list = []
 
-for enum, chapter in enumerate(master_q_list):
-    print(f'---------CHAPTER: {enum+1}')
-    for q in chapter:
-        print(q)
+chapter_ct = 0
+
+for enum_0, chapter in enumerate(master_q_list):
+    q_dict[enum_0+1] = []
+    for enum_1, q in enumerate(chapter):
+        q_dict[enum_0+1].append(make_q_dict(q))
+
+quiz_json = json.dumps(q_dict, indent=2)
+with open('quiz.json', 'w') as out_f:
+    json.dump(quiz_json)
