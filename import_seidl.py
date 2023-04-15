@@ -35,6 +35,7 @@ def make_q_dict(question):
             d_end = c.end()
             pass
     f_dict['q_txt'] = q[q_match.end():a_start]
+    f_dict['has_graphic'] = False
     f_dict['choices'] = []
     f_dict['choices'].append({'opt': 'A', 'opt_text': q[a_end:b_start], 'is_correct': False})
     f_dict['choices'].append({'opt': 'B', 'opt_text': q[b_end:c_start], 'is_correct': False})
@@ -81,6 +82,21 @@ mock_answer_files = [
     mock_q_directory+'ch_2_mock_answer_key',
 ]
 
+# TODO add questions to these lists and add library entry to prevent
+#  the question from showing up in command prompt quiz
+# list of questions with graphic
+ch_1_has_graphic = []
+ch_2_has_graphic = []
+ch_3_has_graphic = []
+ch_4_has_graphic = []
+ch_5_has_graphic = []
+master_has_graphic = [
+    ch_1_has_graphic,
+    ch_2_has_graphic,
+    ch_3_has_graphic,
+    ch_4_has_graphic,
+    ch_5_has_graphic
+]
 q_list = []
 master_q_list = []
 q_dict = {}
@@ -178,7 +194,7 @@ for enum_1, data_file in enumerate(answer_files):
                 q_dict = set_correct_answer(q_dict, q_num, str(enum_1+1), answer, explanation)
                 ct += 1
 
-# print(f'There are {chapter_ct} chapters in list')
+
 ct = 0
 while ct < chapter_ct:
     print(f'Chapter {ct+1}')
