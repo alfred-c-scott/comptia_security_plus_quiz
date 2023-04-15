@@ -1,0 +1,91 @@
+# Flash
+BER
+--Basic Encoding Rules
+CER
+--Canonical Encoding Rules
+DER
+--Distinguished Encoding Rules
+CRL
+--Certificate Revocation List
+OCSP
+--Online Certificate Status Protocol
+CSR
+--Certificate Signing Request
+S/MIME
+--Secure/Multipurpose Internet Mail Extensions
+SSL
+--Secure Socket Layer
+TLS
+--Transport Layer Security
+SSH
+--Secure Shell
+PPTP
+--Point to Point Tunneling Protocol
+L2TP
+--Layer 2 Tunneling Protocol
+ESP
+--Encapsulating Security Payload
+BCP
+--Business Continuity Plan
+BIA
+--Business Impact Analysis
+RPO
+--Recovery Point Objective
+RTO
+--Recovery Time Objective
+MTD
+--Maximum Tolerable Downtime
+WRT
+--Work Recovery Time
+MTBF
+--Mean Time Between Failure
+MTTR
+--Mean Time To Recovery
+PII
+--Personally Identifiable Information
+PHI
+--Protected Health Information
+HIPAA
+--Affects healthcare providers, facilities, insurance companies, and medical data clearing houses
+FISMA
+--Federal Information Security Management Act of 2002
+HAVA
+--Help America Vote Act of 2002
+CIA
+--Confidentiality Integrity Availability
+GDPR
+--General Data Protection Regulation
+AUP
+--Acceptable Use Policy
+NDA
+--Non-Disclosure Agreement
+MOU
+--memorandum of Understandin
+SLA
+--Service-Level Agreement
+ISA
+--Interconnection Security Agreement
+BPA
+--Business Partnership Agreement
+COBIT
+--Control Objectives and Related Technology
+ITIL
+--Information Technology Infrastructure Library
+CIS
+--Center for Internet Security
+RMF
+--Risk Management Framework
+SOC
+--System and Organization Control
+PCI DSS
+--Payment card Industry Data Security Standard
+CSIRT
+--Computer Security Incident Response Team
+SIEM
+--Security Information and Event Monitoring
+BYOD
+--Bring Your Own Device
+ARP
+--Address Resolution Protocol
+BeEF
+--Browser Exploitation Framework
