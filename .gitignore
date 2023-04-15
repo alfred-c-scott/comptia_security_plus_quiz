@@ -6,3 +6,4 @@ __pycache__
 */*/__pycache__
 /practice_tests/
 *.json
+*.json.*
