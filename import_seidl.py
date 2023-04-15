@@ -85,11 +85,11 @@ mock_answer_files = [
 # TODO add questions to these lists and add library entry to prevent
 #  the question from showing up in command prompt quiz
 # list of questions with graphic
-ch_1_has_graphic = []
-ch_2_has_graphic = []
-ch_3_has_graphic = []
-ch_4_has_graphic = []
-ch_5_has_graphic = []
+ch_1_has_graphic = [69, 210, 212]
+ch_2_has_graphic = [1, 96]
+ch_3_has_graphic = [50, 136, 164, 188, 226, ]
+ch_4_has_graphic = [8, 89, 142]
+ch_5_has_graphic = [70]
 master_has_graphic = [
     ch_1_has_graphic,
     ch_2_has_graphic,
@@ -194,19 +194,24 @@ for enum_1, data_file in enumerate(answer_files):
                 q_dict = set_correct_answer(q_dict, q_num, str(enum_1+1), answer, explanation)
                 ct += 1
 
+ct = 0
+while ct < chapter_ct:
+    q_lst = q_dict[str(ct+1)]
+    has_graphic = master_has_graphic[ct]
+    for q in q_lst:
+        q_num = q['q_num']
+        for h in has_graphic:
+            if h == q_num:
+                q['has_graphic'] = True
+    ct += 1
 
 ct = 0
 while ct < chapter_ct:
-    print(f'Chapter {ct+1}')
     q_lst = q_dict[str(ct+1)]
     for q in q_lst:
-        print(q['q_num'], end=' ')
-        choice_list = q['choices']
-        for c in choice_list:
-            if c['is_correct']:
-                print(c['opt'])
-                print(c['explanation'])
-                pass
+        if q['has_graphic']:
+            q_num = q['q_num']
+            print(f'Chapter {ct+1} Question: {q_num}')
     ct += 1
 
 quiz_json = json.dumps(q_dict, indent=2)
