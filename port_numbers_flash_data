@@ -1,0 +1,94 @@
+PPTP
+--1723
+L2TP
+--1701
+FTP
+--20, 21
+SFTP
+--22
+SSH
+--22
+DNS
+--53
+HTTP
+--80
+HTTPS
+--443
+TELNET
+--23
+DHCP
+--67, 68
+TFTP
+--69
+POP3
+--110
+NTP
+--123
+IMAP4
+--143
+SNMP
+--161, 162
+RDP
+--3389
+SMTP
+--25
+LDAP
+--389
+SMB
+--445
+Syslog
+--514
+SMTP TLS/SSL
+--465, 587
+LDAPS
+--636
+IMAP with SSL / TLS
+--993
+POP3 SSL/TLS
+--995
+SQL
+--1433
+SQLnet
+--1521
+MySQL
+--3306
+PostgreSQL
+--5432
+SIP
+--5060, 5061
+Well Known Ports
+--0-1023
+Registered Ports
+--1024-49151
+Dynamic/Private Ports
+--49152-65535
+How many total ports
+--65,536
+Kerberos
+--88
+RPC
+--135
+NetBIOS
+--137-139
+iSCSI
+--860
+SNMP Trap
+--Port 162
+RADIUS (alternate ports)
+--1645, 1646
+L2TP
+--1701
+PPTP
+--1723
+Radius
+--1812, 1813
+FTPS
+--989, 990
+FCIP
+--3225
+iSCSI Target
+--3260
+Syslog over TLS
+--6514
+Diameter
+--3868
