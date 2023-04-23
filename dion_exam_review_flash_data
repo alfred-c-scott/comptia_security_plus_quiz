@@ -1,0 +1,16 @@
+Aircrack-ng
+--A complete suite of wireless security assessment and exploitation tools that includes monitoring, attacking, testing, and cracking of wireless networks. This includes packet capture and export of the data collected as a text file or pcap file.
+John the Ripper
+--A password cracking software tool.
+Nessus
+--A vulnerability scanner.
+Netcat
+--Used to create a reverse shell from a victimized machine back to an attacker.
+Clean Agent Systems
+--Halon, FM-200, CO2
+Mandatory Access Control
+--An access control policy where the computer system determines the access control for an object, relies on security labels being assigned to every user (called a subject) and every file/folder/device or network connection (called an object)
+Lattice-based Access Control
+--Utilizes complex mathematics to create sets of objects and subjects to define how they interact
+Scanless
+--Utility that is used to create an exploitation website that can perform open port scans in a more stealth-like manner

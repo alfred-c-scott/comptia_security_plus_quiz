@@ -1,4 +1,3 @@
-# Flash
 BER
 --Basic Encoding Rules
 CER
@@ -89,3 +88,69 @@ ARP
 --Address Resolution Protocol
 BeEF
 --Browser Exploitation Framework
+DLP
+--Data Loss Prevention
+BIOS
+--Basic Input Output System
+UEFI
+--Unified Extensible Firmware Interface
+NAS
+--Network Attached Storage
+SAN
+--Storage Area Network
+EDM
+--Exact Data Match
+SED
+--Self Encrypting Drive
+TPM
+--Trusted Platform Module
+AES
+--Advanced Encryption Standard
+HSM
+--Hardware Security Modul
+IDS
+--Intrusion Detection System
+IPS
+--Intrusion Prevention System
+HIDS
+--Host-Based Intrusion Detection System
+HIPS
+--Host-Based Intrusion Prevention System
+EPP
+--Endpoint Protection Program
+MAC
+--Mandatory Access Control
+MAC
+--Media Access Control
+ABAC
+--Attribute Based Access Control
+RBAC
+--Role Based Access Control
+DAC
+--Discretionary Access Control
+SSO
+--Single Sign On
+WEP
+--Wired Equivalent Privacy
+TKIP
+--Temporal Key Integrity Protocol
+SAE
+--Simultaneous Authentication of Equals
+GDPR
+--General Data Protection Regulation
+OSINT
+--Open Source Intelligence
+NGFW
+--Next Generation Firewall
+HSM
+--Hardware Security Module
+FAR
+--False Acceptance Rate
+FRR
+--False Rejection Rate
+CER
+--Crossover Error Rate
+SOX
+--Sabanes-Oxley
+STP
+--Spanning Tree Protocol
