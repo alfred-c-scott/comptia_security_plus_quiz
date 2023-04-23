@@ -1,10 +1,13 @@
 import re
 import json
+# from main import JSON_DIR
+
+JSON_DIR = 'json/'
 
 flash_dict = {}
 
 back_pattern = re.compile(r'--')
-
+# print('1')
 with open('acronyms_flash_data', 'r') as f:
     f_data = f.readlines()
 
@@ -20,8 +23,8 @@ for i, line in enumerate(f_data):
         flash_dict['acronym_flash_cards'].append(acronym_dict.copy())
 i = 0
 
-with open('json/flash.json', 'w') as f:
+with open(JSON_DIR+'flash.json', 'w') as f:
     json.dump(flash_dict, f, indent=2)
 
-with open('json/flash.json', 'r') as f:
-    my_dict = json.load(f)
+# with open(JSON_DIR+'flash.json', 'r') as f:
+#     my_dict = json.load(f)
