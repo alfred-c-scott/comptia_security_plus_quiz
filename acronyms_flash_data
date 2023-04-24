@@ -154,3 +154,33 @@ SOX
 --Sabanes-Oxley
 STP
 --Spanning Tree Protocol
+PIV
+--Personal Identity Verification
+ALE
+--Annualized Loss Expectancy ALE = SLE * ARO
+ARO
+--Annualized Rate of Occurrence
+SLE
+--Single Loss Expectancy
+NAC
+--Network Access Control
+GPO
+--Group Policies
+MDM
+--Mobile Device Management
+SOAR
+--Security Orchestration Automation and Response
+IOC
+--Indicator of Compromise
+CIS
+--Center for Internet Security
+RMF
+--Risk Management Framework
+CSF
+--Cybersecurity Framework
+SOC
+--System and Organization Controls
+PIMS
+--Privacy Information Management System
+ISMS
+--Information Security Management System

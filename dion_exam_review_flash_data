@@ -14,3 +14,23 @@ Lattice-based Access Control
 --Utilizes complex mathematics to create sets of objects and subjects to define how they interact
 Scanless
 --Utility that is used to create an exploitation website that can perform open port scans in a more stealth-like manner
+Nessus, Qualysquard, and AlienVault
+--Used for vulnerability assessments 1.) define the desired state of security 2.) Create a baseline 3.) Prioritize the vulnerabilities 4.) Mitigate vulnerabilities 5.) Monitor the network and systems
+theHarvester
+--A python script that is used to gather emails, subdomains, hosts, employee names, open ports and banners from different public sources like search engines, PGP key servers and SHODAN database\
+sn1per
+--An automated scanner that can be used during a penetration test to enumerate and scan for vulnerabilities across a network
+hping
+--An open-source packet generator and analyzer for the TCP/IP protocol that is used for security auditing and testing of firewalls and networks
+Cuckoo
+--An open source software for automating analysis of suspicious files in a sandbox
+MDM
+--Can prevent certain application from being installed on a mobile device
+Autopsy
+--A digital forensics platform and graphical interface to The Sleuth Kit® and other digital forensics tools
+Splunk
+--A market-leading big data information gathering and analysis tool that can import machine-generated data via a connector or visibility add-on
+ELK/Elastic Stack
+--Collection of free and open-source SIEM tools that provides storage, search, and analysis functions
+ArcSight
+--A SIEM log management and analytics software that can be used for compliance reporting for legislation and regulations like HIPPA, SOX, and PCI DSS
