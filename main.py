@@ -5,14 +5,8 @@ import math
 
 JSON_DIR = 'json/'
 
-main_screen_prompt = '1. Chapter Based Questions\n' \
-                     '2. Review Missed Questions\n' \
-                     '3. Study Port Numbers\n' \
-                     '4. Study Flash Cards\n' \
-                     '5. Quit\n\n' \
-                     '--->'
 
-
+# returns formatted fixed length titles for the terminal
 def make_banner(message):
     banner_len = 78
     mess_len = len(message)
@@ -29,11 +23,8 @@ def make_banner(message):
         return message
 
 
-print(make_banner('CompTIA Sec+ Quiz'))
-opt_1 = input(main_screen_prompt)
-# opt_1 = '4'
-
-
+# receives a string as a parameter and returns boolean if
+# if string is an integer
 def is_integer(n):
     try:
         float(n)
@@ -41,22 +32,6 @@ def is_integer(n):
         return False
     else:
         return float(n).is_integer()
-
-
-def make_banner(message):
-    banner_len = 78
-    mess_len = len(message)
-    banner_diff = banner_len - mess_len
-    ct = 0
-    dashes = ''
-    while ct < banner_diff/2:
-        dashes = dashes+'-'
-        ct += 1
-    message = dashes+message+dashes
-    if len(message) > banner_len:
-        return message[:len(message)-1]
-    else:
-        return message
 
 
 def make_quiz_list(deck_name, length):
@@ -141,7 +116,7 @@ def flash_quiz():
             print('2.  20 Flash Cards')
             print('3.  30 Flash Cards')
             print('4.  40 Flash Cards')
-            length_choice = input('\nChoose Length: ')
+            length_choice = input('\nChoose Length\n\n--->')
         # do this if input is integer and a valid option
         elif is_integer(length_choice) and int(length_choice) <= 4:
             length_choice = int(length_choice)
@@ -167,9 +142,19 @@ def flash_quiz():
     make_quiz_list(deck_name, quiz_length)
 
 
-loop_0 = True
+print(make_banner('CompTIA Sec+ Quiz'))
 
+main_screen_prompt = '1. Chapter Based Questions\n' \
+                     '2. Review Missed Questions\n' \
+                     '3. Study Port Numbers\n' \
+                     '4. Study Flash Cards\n' \
+                     '5. Quit\n\n' \
+                     '--->'
+
+loop_0 = True
 while loop_0:
+    opt_1 = input(main_screen_prompt)
+    print()
     if opt_1 == '1':
         pass
     elif opt_1 == '2':
@@ -183,4 +168,4 @@ while loop_0:
         loop_0 = False
         print('Shutting Down')
     else:
-        print('Invalid Input -- TRY AGAIN')
+        print('Invalid Input -- TRY AGAIN\n')
