@@ -36,3 +36,5 @@ ArcSight
 --A SIEM log management and analytics software that can be used for compliance reporting for legislation and regulations like HIPPA, SOX, and PCI DSS
 SRTP
 --Used for VOIP
+Sensor
+--Create performance statistics from a network link

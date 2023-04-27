@@ -194,3 +194,7 @@ BPA
 --Business Partnership Agreement
 MSA
 --Measurement System Analysis
+SSRF
+--Server Side Request Forgery
+WAF
+--Web Application Firewall
