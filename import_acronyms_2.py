@@ -23,6 +23,7 @@ for i, acronym in enumerate(acronym_list):
     acronym_dict['acronym'] = acronym[0:len(acronym)-1]
     acronym_dict['definition'] = definition_list[i][0:len(definition_list[i])-1]
     acronym_dict['difficulty'] = 2
+    acronym_dict['attempts'] = 0
     # print(acronym, end=': ')
     # print(definition_list[i])
     acronym_dict_list.append(acronym_dict.copy())
@@ -34,4 +35,3 @@ for a_dict in acronym_dict_list:
 
 with open('json/acronyms.json', 'w') as j:
     json.dump(acronym_dict_list, j, indent=2)
-
